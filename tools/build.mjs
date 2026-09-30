@@ -13,10 +13,10 @@ const YEAR = new Date().getFullYear();
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 // Simple glyphs for the apps still in development (kept vague on purpose).
-const SUN = '<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M8 32h32"/><path d="M14 32a10 10 0 0 1 20 0"/><path d="M24 12v4M11 18l3 3M37 18l-3 3"/></svg>';
-const GRID = '<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="3"/><rect x="27" y="9" width="12" height="12" rx="3"/><rect x="9" y="27" width="12" height="12" rx="3"/><path d="M28 33l4 4 7-8"/></svg>';
-const SOON_DAWN = `<div class="tile dawn">${SUN}</div>`;
-const SOON_TIDE = `<div class="tile tide">${GRID}</div>`;
+const SPARK = '<svg viewBox="0 0 48 48" fill="#fff"><path d="M24 6c1.6 9.4 5.6 13.4 15 15-9.4 1.6-13.4 5.6-15 15-1.6-9.4-5.6-13.4-15-15 9.4-1.6 13.4-5.6 15-15z"/><circle cx="38" cy="36" r="3"/></svg>';
+const ORBIT = '<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="3"><circle cx="24" cy="24" r="14"/><circle cx="24" cy="24" r="4" fill="#fff" stroke="none"/><circle cx="38" cy="14" r="3" fill="#fff" stroke="none"/></svg>';
+const SOON_DAWN = `<div class="tile dawn">${SPARK}</div>`;
+const SOON_TIDE = `<div class="tile tide">${ORBIT}</div>`;
 const mail = (subject) => `<a href="mailto:${EMAIL}${subject ? `?subject=${encodeURIComponent(subject)}` : ''}">${EMAIL}</a>`;
 
 function layout({ path, title, description, image = '/assets/embody-share.jpg', icon = '/assets/favicon.svg', body, before = '' }) {
@@ -108,12 +108,12 @@ const pages = {
   'index.html': layout({
     path: '/',
     title: 'Sconim Holdings',
-    description: 'Sconim Holdings LLC is an Ohio company that builds and publishes software, including Embody - Law of Assumption.',
+    description: 'Sconim Holdings develops and publishes modern software and digital products, including Embody, a daily practice app inspired by the Law of Assumption.',
     before: `<div class="sky"><div class="wrap"><div class="hero hero-grid">
   <div>
     <p class="eyebrow">Sconim Holdings LLC</p>
     <h1 style="margin-top:16px">Software made with care.</h1>
-    <p class="lead" style="margin-top:18px">We are an independent company in Ohio that builds and publishes software, including Embody, a gentle daily practice for the Law of Assumption.</p>
+    <p class="lead" style="margin-top:18px">Sconim Holdings develops and publishes modern software and digital products designed to make everyday experiences more useful, intuitive, and engaging. Our portfolio includes Embody, a daily practice app inspired by the Law of Assumption.</p>
     <div class="actions"><a class="button" href="#apps">See what we make</a><a class="button secondary" href="mailto:${EMAIL}">Get in touch</a></div>
   </div>
   <div class="lineup" aria-hidden="true">
@@ -135,15 +135,15 @@ const pages = {
       <p class="small-links"><a href="/embody/support/">Support</a><a href="/embody/privacy/">Privacy</a><a href="/embody/terms/">Terms</a></p>
     </article>
     <article class="card product-card soon">
-      <div class="art tile dawn" aria-hidden="true">${SUN}</div>
-      <h3>A new wellbeing app</h3>
-      <p>Another calm, thoughtful app for your inner life. We’ll share more soon.</p>
+      <div class="art tile dawn" aria-hidden="true">${SPARK}</div>
+      <h3>Something new</h3>
+      <p>A new app we’re working on. We’ll share more soon.</p>
       <p><span class="badge soft">Coming soon</span></p>
     </article>
     <article class="card product-card soon">
-      <div class="art tile tide" aria-hidden="true">${GRID}</div>
-      <h3>A tool for everyday work</h3>
-      <p>Software that takes the busywork out of your day, so you can focus on what matters. We’ll share more soon.</p>
+      <div class="art tile tide" aria-hidden="true">${ORBIT}</div>
+      <h3>In the works</h3>
+      <p>Another project in development. More to come.</p>
       <p><span class="badge soft">Coming soon</span></p>
     </article>
   </div>

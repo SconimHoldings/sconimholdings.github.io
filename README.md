@@ -37,3 +37,7 @@ cd ../../sconimholdings.github.io && node tools/build.mjs
 ## Adding another app
 
 Copy the Embody pages in `tools/build.mjs` (overview, support, privacy, terms), add a card to the home page's "Our apps" section, and add the new pages to the sitemap list at the bottom.
+
+## Credits
+
+The house photo in the Embody screenshot (`assets/embody-today.jpg`) is by Brian Babb on Unsplash (https://unsplash.com/photos/modern-house-with-garage-at-dusk-XbwHrt87mQ0), used under the Unsplash License.
