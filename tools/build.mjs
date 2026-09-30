@@ -12,6 +12,11 @@ const EMAIL = 'contact@sconimholdings.com';
 const YEAR = new Date().getFullYear();
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+// Simple glyphs for the apps still in development (kept vague on purpose).
+const SUN = '<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M8 32h32"/><path d="M14 32a10 10 0 0 1 20 0"/><path d="M24 12v4M11 18l3 3M37 18l-3 3"/></svg>';
+const GRID = '<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="3"/><rect x="27" y="9" width="12" height="12" rx="3"/><rect x="9" y="27" width="12" height="12" rx="3"/><path d="M28 33l4 4 7-8"/></svg>';
+const SOON_DAWN = `<div class="tile dawn">${SUN}</div>`;
+const SOON_TIDE = `<div class="tile tide">${GRID}</div>`;
 const mail = (subject) => `<a href="mailto:${EMAIL}${subject ? `?subject=${encodeURIComponent(subject)}` : ''}">${EMAIL}</a>`;
 
 function layout({ path, title, description, image = '/assets/embody-share.jpg', icon = '/assets/favicon.svg', body, before = '' }) {
@@ -104,34 +109,80 @@ const pages = {
     path: '/',
     title: 'Sconim Holdings',
     description: 'Sconim Holdings LLC is an Ohio company that builds and publishes software, including Embody - Law of Assumption.',
-    before: `<div class="sky"><div class="wrap"><div class="hero stack">
-  <p class="eyebrow">Sconim Holdings LLC</p>
-  <h1>Software made with care.</h1>
-  <p class="lead">We are an independent company in Ohio that builds and publishes software, including Embody, a gentle daily practice for the Law of Assumption.</p>
+    before: `<div class="sky"><div class="wrap"><div class="hero hero-grid">
+  <div>
+    <p class="eyebrow">Sconim Holdings LLC</p>
+    <h1 style="margin-top:16px">Software made with care.</h1>
+    <p class="lead" style="margin-top:18px">We are an independent company in Ohio that builds and publishes software, including Embody, a gentle daily practice for the Law of Assumption.</p>
+    <div class="actions"><a class="button" href="#apps">See what we make</a><a class="button secondary" href="mailto:${EMAIL}">Get in touch</a></div>
+  </div>
+  <div class="lineup" aria-hidden="true">
+    ${SOON_DAWN}
+    <img src="/assets/embody-icon.png" alt="" width="124" height="124">
+    ${SOON_TIDE}
+  </div>
 </div></div></div>
 `,
     body: `<section id="apps">
-  <h2>What we make</h2>
-  <div class="card app">
-    <img src="/assets/embody-icon.png" alt="The Embody app icon" width="96" height="96">
-    <div class="stack">
-      <h3>Embody - Law of Assumption</h3>
-      <p class="muted">Choose the life you want, bring it to life with photos and links, and spend a few quiet minutes each day living from the feeling that it is already yours.</p>
-      <p><span class="badge">Coming soon to the App Store and Google Play</span></p>
-      <p class="links"><a href="/embody/">Learn more</a><a href="/embody/support/">Support</a><a href="/embody/privacy/">Privacy Policy</a><a href="/embody/terms/">Terms</a></p>
-    </div>
+  <p class="eyebrow">What we make</p>
+  <h2 style="margin-top:10px">Our apps</h2>
+  <div class="products">
+    <article class="card product-card live">
+      <img class="art" src="/assets/embody-icon.png" alt="" width="72" height="72">
+      <h3><a class="stretched" href="/embody/">Embody - Law of Assumption</a></h3>
+      <p>Choose the life you want, bring it to life with photos and links, and spend a few quiet minutes each day living from the feeling that it’s already yours.</p>
+      <p><span class="badge">Coming soon</span></p>
+      <p class="small-links"><a href="/embody/support/">Support</a><a href="/embody/privacy/">Privacy</a><a href="/embody/terms/">Terms</a></p>
+    </article>
+    <article class="card product-card soon">
+      <div class="art tile dawn" aria-hidden="true">${SUN}</div>
+      <h3>A new wellbeing app</h3>
+      <p>Another calm, thoughtful app for your inner life. We’ll share more soon.</p>
+      <p><span class="badge soft">Coming soon</span></p>
+    </article>
+    <article class="card product-card soon">
+      <div class="art tile tide" aria-hidden="true">${GRID}</div>
+      <h3>A tool for everyday work</h3>
+      <p>Software that takes the busywork out of your day, so you can focus on what matters. We’ll share more soon.</p>
+      <p><span class="badge soft">Coming soon</span></p>
+    </article>
   </div>
 </section>
 
-<section id="about" class="stack">
-  <h2>About</h2>
-  <p class="lead">Sconim Holdings LLC is a privately held company based in Ohio. We build and publish software under our own brands. Each product has its own privacy policy and terms, linked from its page.</p>
+<section class="spotlight" aria-labelledby="spotlight-title">
+  <div class="phone"><img src="/assets/embody-today.jpg" alt="The Today screen in Embody: the Manifest card and a Reality called My Dream Home" width="469" height="1015" loading="lazy"></div>
+  <div>
+    <p class="eyebrow">Now building</p>
+    <h2 id="spotlight-title" style="margin-top:10px">Embody - Law of Assumption</h2>
+    <p class="lead" style="margin-top:14px">A gentle daily practice for the Law of Assumption: decide what you want, assume it’s already yours, and live from there.</p>
+    <ul class="checks">
+      <li><strong>Realities.</strong> A vision board for each life you’re choosing, with links, photos, places and people.</li>
+      <li><strong>Manifest and SATS.</strong> Short guided practices that take a few minutes, including one for bedtime.</li>
+      <li><strong>Learn.</strong> How manifesting unfolds, in plain words, with a short course.</li>
+      <li><strong>Private by design.</strong> No accounts, no ads and no tracking. What you create stays on your phone.</li>
+    </ul>
+    <div class="actions"><a class="button" href="/embody/">Explore Embody</a><a class="button secondary" href="/embody/support/">Support</a></div>
+  </div>
 </section>
 
-<section id="contact" class="stack">
-  <h2>Contact</h2>
-  <p class="lead">For support, questions or anything else, email ${mail()}.</p>
-  <p class="muted">Sconim Holdings LLC &middot; Ohio, United States</p>
+<section id="about">
+  <p class="eyebrow">About</p>
+  <h2 style="margin-top:10px">How we work</h2>
+  <p class="lead" style="margin-top:14px">Sconim Holdings LLC is a privately held company based in Ohio. We build and publish software under our own brands, and each product has its own privacy policy and terms, linked from its page.</p>
+  <div class="grid">
+    <div class="card"><h3>Useful first</h3><p>Every product starts from a real need and stays focused on doing that one thing well.</p></div>
+    <div class="card"><h3>Plain language</h3><p>Clear pricing, and privacy policies and terms written so people can actually read them.</p></div>
+    <div class="card"><h3>Built to last</h3><p>A small, independent company making software for phones, tablets and the web.</p></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="band">
+    <h2>Say hello</h2>
+    <p class="lead">Questions, feedback, partnerships or press: we’d love to hear from you.</p>
+    <div class="actions"><a class="button" href="mailto:${EMAIL}">${EMAIL}</a></div>
+    <p class="muted" style="margin-top:16px">Sconim Holdings LLC &middot; Ohio, United States</p>
+  </div>
 </section>`,
   }),
 
@@ -144,6 +195,15 @@ const pages = {
     body: `<section class="stack">
   <p class="lead">Your chosen life, manifested. Choose what you want, bring it to life with photos and links, then spend a few quiet minutes each day feeling it’s already yours.</p>
   <p><span class="badge">Coming soon to the App Store and Google Play</span></p>
+</section>
+
+<section aria-labelledby="look-title">
+  <h2 id="look-title">A look inside</h2>
+  <div class="gallery">
+    <figure><div class="phone"><img src="/assets/embody-today.jpg" alt="Today: the Manifest card and a Reality called My Dream Home" width="469" height="1015" loading="lazy"></div><figcaption><strong>Today</strong>Manifest, and the lives you’re choosing</figcaption></figure>
+    <figure><div class="phone"><img src="/assets/embody-practice.jpg" alt="Practice: What do you need right now? with answers like It’s bedtime and Doubt crept in" width="469" height="1015" loading="lazy"></div><figcaption><strong>Practice</strong>Tap what you need right now</figcaption></figure>
+    <figure><div class="phone"><img src="/assets/embody-learn.jpg" alt="Learn: how manifesting unfolds, from deciding to assuming it" width="469" height="1015" loading="lazy"></div><figcaption><strong>Learn</strong>How manifesting unfolds</figcaption></figure>
+  </div>
 </section>
 
 <section>

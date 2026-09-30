@@ -105,3 +105,58 @@ section { margin-top: 64px; }
 .doc .intro { font-size: 18px; margin-top: 18px; }
 .faq h3 { margin-top: 32px; }
 .faq p { margin-top: 8px; color: var(--ink-soft); }
+
+/* ---- Home: hero with buttons and the app lineup ---- */
+.hero-grid { display: grid; gap: 40px; align-items: center; }
+@media (min-width: 820px) { .hero-grid { grid-template-columns: 1.25fr 1fr; } }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+.button.secondary { background: rgba(255, 255, 255, 0.75); border: 1px solid var(--line); }
+.lineup { display: flex; justify-content: center; align-items: center; gap: 18px; padding: 12px 0; }
+.lineup > * { width: 104px; height: 104px; border-radius: 23%; box-shadow: 0 14px 34px rgba(12, 27, 46, 0.18); flex: none; }
+.lineup > :nth-child(1) { transform: rotate(-6deg) translateY(10px); }
+.lineup > :nth-child(2) { width: 124px; height: 124px; transform: translateY(-8px); }
+.lineup > :nth-child(3) { transform: rotate(6deg) translateY(10px); }
+@media (max-width: 420px) { .lineup > * { width: 84px; height: 84px; } .lineup > :nth-child(2) { width: 100px; height: 100px; } }
+
+/* Placeholder art for apps that are still in development */
+.tile { display: grid; place-items: center; }
+.tile svg { width: 46%; height: 46%; opacity: 0.9; }
+.tile.dawn { background: linear-gradient(145deg, #ffd9b8 0%, #f4a08c 52%, #9a6aa6 100%); }
+.tile.tide { background: linear-gradient(145deg, #cfe6fb 0%, #86ade9 52%, #3f539f 100%); }
+
+/* ---- Product cards: the whole card is one link; the small links inside stay clickable ---- */
+.products { display: grid; gap: 16px; margin-top: 24px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+.product-card { position: relative; display: flex; flex-direction: column; gap: 12px; transition: transform 0.15s ease, box-shadow 0.15s ease; }
+.product-card .art { width: 72px; height: 72px; border-radius: 23%; box-shadow: 0 8px 20px rgba(12, 27, 46, 0.16); }
+.product-card p { color: var(--ink-soft); font-size: 16px; }
+.product-card .stretched { color: var(--ink); text-decoration: none; }
+.product-card .stretched::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.product-card .small-links { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 14px; font-weight: 500; margin-top: auto; }
+.product-card.live:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(12, 27, 46, 0.1); }
+.product-card.live:hover .stretched { text-decoration: underline; text-underline-offset: 3px; }
+.product-card.soon { background: rgba(255, 255, 255, 0.6); }
+.badge.soft { background: var(--surface-alt); color: var(--ink-soft); }
+
+/* ---- Spotlight: a phone with a real screenshot next to the story ---- */
+.spotlight { display: grid; gap: 36px; align-items: center; }
+@media (min-width: 820px) { .spotlight { grid-template-columns: 300px 1fr; } }
+.phone { width: 100%; max-width: 280px; margin: 0 auto; border: 9px solid #0c1b2e; border-radius: 38px; overflow: hidden; background: #0c1b2e; box-shadow: 0 24px 48px rgba(12, 27, 46, 0.22); }
+.phone img { width: 100%; height: auto; }
+.checks { list-style: none; padding: 0; margin: 20px 0 0; }
+.checks li { position: relative; padding-left: 34px; color: var(--ink-soft); }
+.checks li + li { margin-top: 12px; }
+.checks li::before { content: ""; position: absolute; left: 0; top: 4px; width: 22px; height: 22px; border-radius: 50%; background: var(--accent-soft); }
+.checks li::after { content: ""; position: absolute; left: 7px; top: 9px; width: 8px; height: 5px; border-left: 2px solid var(--accent); border-bottom: 2px solid var(--accent); transform: rotate(-45deg); }
+.checks strong { color: var(--ink); }
+
+/* ---- Contact band ---- */
+.band { background: linear-gradient(135deg, var(--accent-soft), #eef8ff); border: 1px solid var(--line); border-radius: 28px; padding: 36px 28px; text-align: center; }
+.band .lead { margin: 12px auto 0; }
+.band .actions { justify-content: center; }
+
+/* ---- Embody page: screenshot gallery (swipes sideways on phones) ---- */
+.gallery { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(220px, 1fr); gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 8px 4px 20px; margin-top: 24px; }
+.gallery figure { margin: 0; scroll-snap-align: center; }
+.gallery .phone { max-width: 250px; border-radius: 34px; border-width: 8px; }
+.gallery figcaption { text-align: center; margin-top: 14px; color: var(--ink-soft); font-size: 15px; }
+.gallery figcaption strong { display: block; color: var(--ink); }
