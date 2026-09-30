@@ -1,0 +1,204 @@
+{
+  "effective": "September 29, 2026",
+  "privacy": {
+    "title": "Privacy Policy",
+    "intro": "This Privacy Policy explains how Sconim Holdings LLC (“we”, “us”) handles information when you use the Embody app. Embody is built so that your practice stays on your phone: we keep as little as we can, and we never sell it.",
+    "sections": [
+      {
+        "heading": "The short version",
+        "bullets": [
+          "Your Realities, journal, assumptions and practice history are stored on your device, not on our servers.",
+          "We don’t sell your information, show ads, or use analytics or advertising trackers.",
+          "Subscriptions are handled by Apple or Google. We never see your payment details."
+        ]
+      },
+      {
+        "heading": "Information kept on your device",
+        "paragraphs": [
+          "Everything you create in Embody is stored on your device: your name if you add one, your Realities and what you save to them (links, photos, places, people, notes and prices), journal entries, assumptions, practice and streak history, and your settings.",
+          "It stays there until you erase it (You → Account & privacy → Erase data on this device) or delete the app. Your device may include it in its own backups, depending on your device settings. We can’t see it or recover it for you."
+        ]
+      },
+      {
+        "heading": "Technical information our server sees",
+        "paragraphs": [
+          "Like any web service, our server receives your IP address, the time, the kind of request and basic device information when the app contacts it. We use this only to run the service and prevent abuse."
+        ]
+      },
+      {
+        "heading": "Links and photos",
+        "bullets": [
+          "Link previews: when you paste a link, the page is fetched so its title, photo and price can be shown. The website sees that request, from your device or, on the web version, from our server.",
+          "Photos: the app can only use the photos you pick. They are stored on your device with the rest of your Realities."
+        ]
+      },
+      {
+        "heading": "Subscriptions",
+        "paragraphs": [
+          "Purchases and free trials are processed by the Apple App Store or Google Play under their terms. We use RevenueCat to confirm whether your subscription is active. RevenueCat receives an anonymous identifier created by the app, your purchase receipts and basic device information, under its own privacy policy. We receive your subscription status, never your name, email or payment details."
+        ]
+      },
+      {
+        "heading": "Reminders",
+        "paragraphs": [
+          "If you turn on the weekly reminder, it is scheduled on your device. No push service is involved and nothing about it is sent to us. You can turn it off in the app or in your device settings."
+        ]
+      },
+      {
+        "heading": "What we don’t do",
+        "bullets": [
+          "Sell, rent or trade your information.",
+          "Show ads, or share information with advertisers or data brokers.",
+          "Use analytics or tracking tools, or track you across other apps and websites.",
+          "Build a profile of you on our servers."
+        ]
+      },
+      {
+        "heading": "Your choices and rights",
+        "paragraphs": [
+          "You control your data: you can edit or erase it in the app at any time, turn reminders off, and choose not to use the features that send text for a reply.",
+          "Depending on where you live (for example, in the European Economic Area, the United Kingdom or California), you may have rights to access, correct, delete or restrict the use of personal information, or to object to its use. Because almost everything stays on your device, we usually hold nothing about you beyond basic server logs. To ask about them or exercise a right, email contact@sconimholdings.com, and we’ll respond within the time the law requires."
+        ]
+      },
+      {
+        "heading": "Children",
+        "paragraphs": [
+          "Embody is not directed to children under 13, or the minimum age required in your country, and we don’t knowingly collect information from them. If you believe a child has sent us information, contact us and we’ll delete it."
+        ]
+      },
+      {
+        "heading": "Security and where information is processed",
+        "paragraphs": [
+          "Information sent between the app and our server is encrypted in transit. What stays on your device is protected by your device’s own security, such as your passcode. Our server and the services named here may process information in the United States and other countries, with safeguards as required by law."
+        ]
+      },
+      {
+        "heading": "Personalized replies",
+        "paragraphs": [
+          "A few features, like the Assumption Coach, send the text involved through our server to a service provider that writes your reply. We don’t store it.",
+          "Those replies are written by artificial intelligence (AI) from Anthropic, our service provider, which may not use what you send to train its models. They may be inaccurate, and they are not professional advice."
+        ]
+      },
+      {
+        "heading": "Changes to this policy",
+        "paragraphs": [
+          "If we change this policy, we’ll update the date below, and for important changes we’ll let you know in the app before they take effect."
+        ]
+      },
+      {
+        "heading": "Contact",
+        "paragraphs": [
+          "Questions about privacy: contact@sconimholdings.com. Sconim Holdings LLC. This policy is effective as of September 29, 2026."
+        ]
+      }
+    ]
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "intro": "These Terms of Service are an agreement between you and Sconim Holdings LLC (“we”, “us”) about your use of the Embody app. By downloading or using Embody, you agree to them. If you don’t agree, please don’t use the app.",
+    "sections": [
+      {
+        "heading": "What Embody is",
+        "paragraphs": [
+          "Embody is an app for practicing the Law of Assumption, a spiritual and philosophical framework taught by Neville Goddard. It offers practices, lessons and reflection tools to use according to your own beliefs.",
+          "The Law of Assumption is not established science, and Embody makes no promise about any particular result in your life. A hard season is never a sign that you did something wrong."
+        ]
+      },
+      {
+        "heading": "Not professional advice",
+        "paragraphs": [
+          "Embody is not medical, psychological, financial or legal advice, and it is not a substitute for care from a qualified professional. Don’t delay or stop seeking professional help because of something in the app.",
+          "If you are in crisis or thinking about harming yourself, contact your local emergency number now. In the United States, you can call or text 988 to reach the Suicide & Crisis Lifeline."
+        ]
+      },
+      {
+        "heading": "Who can use Embody",
+        "paragraphs": [
+          "You must be at least 13 years old, or the minimum age required in your country, to use Embody. If you are under 18, or the age of majority where you live, please use it with the permission of a parent or guardian."
+        ]
+      },
+      {
+        "heading": "Free trial and subscription",
+        "bullets": [
+          "Embody is available by subscription, starting with a free trial. The trial length and the price are shown before you start.",
+          "When the trial ends, your subscription begins and renews automatically each month or year, depending on the plan you chose, unless you cancel at least 24 hours before the end of the current period.",
+          "Payment is charged to your Apple App Store or Google Play account. You can manage or cancel your subscription in your account settings there. Deleting the app does not cancel it.",
+          "Refunds are handled by Apple or Google under their policies. If the price changes, you’ll be told in advance as the store and the law require."
+        ]
+      },
+      {
+        "heading": "Your content",
+        "paragraphs": [
+          "What you create in Embody (your Realities, journal, assumptions and anything else you add) belongs to you. It is stored on your device, so please keep your own backups; we can’t restore it if it’s lost or erased."
+        ]
+      },
+      {
+        "heading": "Using Embody fairly",
+        "paragraphs": [
+          "Please don’t:"
+        ],
+        "bullets": [
+          "break the law, or use Embody to harm, harass or deceive anyone;",
+          "try to get around subscriptions, rate limits or other protections, or access our server other than through the app;",
+          "copy, modify, resell or reverse engineer the app, except where the law allows it;",
+          "overload, disrupt or try to break into the app or our server."
+        ]
+      },
+      {
+        "heading": "Third-party content and services",
+        "paragraphs": [
+          "Embody includes or links to things we don’t control, such as websites you save to your Realities. They are provided as they are, under their owners’ terms, and we aren’t responsible for them."
+        ]
+      },
+      {
+        "heading": "Our app",
+        "paragraphs": [
+          "The app, its design and its original text, sessions and artwork belong to Sconim Holdings LLC or our licensors. We give you a personal, non-exclusive, non-transferable license to use Embody on devices you own or control, for as long as you follow these Terms.",
+          "We may change, add or remove features, and may suspend or end access if these Terms are seriously broken. You can stop using Embody at any time."
+        ]
+      },
+      {
+        "heading": "Disclaimers",
+        "paragraphs": [
+          "To the extent the law allows, Embody is provided “as is” and “as available”, without warranties of any kind, express or implied, including fitness for a particular purpose. We don’t promise that it will always be available or free of errors."
+        ]
+      },
+      {
+        "heading": "Limitation of liability",
+        "paragraphs": [
+          "To the extent the law allows, Sconim Holdings LLC is not liable for any indirect, incidental, special or consequential damages, or for loss of data, arising from your use of Embody. Our total liability for any claim is limited to the amount you paid for Embody in the 12 months before the claim. Nothing in these Terms limits rights you have that cannot be limited by law."
+        ]
+      },
+      {
+        "heading": "Governing law",
+        "paragraphs": [
+          "These Terms are governed by the laws of the State of Ohio, United States, without regard to conflict-of-law rules, except where the law of the country you live in requires otherwise."
+        ]
+      },
+      {
+        "heading": "Personalized replies",
+        "paragraphs": [
+          "Some replies in Embody, such as the Assumption Coach’s, are written by artificial intelligence (AI). They can be wrong or incomplete, so please use your own judgment."
+        ]
+      },
+      {
+        "heading": "If you downloaded Embody from the App Store",
+        "paragraphs": [
+          "These Terms are between you and Sconim Holdings LLC, not Apple. Apple is not responsible for Embody or its content, has no obligation to provide maintenance or support for it, and is not responsible for any claims relating to it. If Embody fails to meet any applicable warranty, you may notify Apple for a refund of the purchase price, if any, and Apple has no other warranty obligation. Apple and its subsidiaries are third-party beneficiaries of these Terms and may enforce them against you."
+        ]
+      },
+      {
+        "heading": "Changes to these Terms",
+        "paragraphs": [
+          "We may update these Terms. We’ll change the date below, and for important changes we’ll let you know in the app before they take effect. If you keep using Embody after that, you accept the updated Terms."
+        ]
+      },
+      {
+        "heading": "Contact",
+        "paragraphs": [
+          "Questions about these Terms: contact@sconimholdings.com. Sconim Holdings LLC. These Terms are effective as of September 29, 2026."
+        ]
+      }
+    ]
+  }
+}
