@@ -1,5 +1,5 @@
 {
-  "effective": "September 29, 2026",
+  "effective": "September 30, 2026",
   "privacy": {
     "title": "Privacy Policy",
     "intro": "This Privacy Policy explains how Sconim Holdings LLC (“we”, “us”) handles information when you use the Embody app. Embody is built so that your practice stays on your phone: we keep as little as we can, and we never sell it.",
@@ -35,7 +35,7 @@
       {
         "heading": "Subscriptions",
         "paragraphs": [
-          "Purchases and free trials are processed by the Apple App Store or Google Play under their terms. We use RevenueCat to confirm whether your subscription is active. RevenueCat receives an anonymous identifier created by the app, your purchase receipts and basic device information, under its own privacy policy. We receive your subscription status, never your name, email or payment details."
+          "Purchases and free trials are processed by the Apple App Store or Google Play under their terms. We use RevenueCat to confirm whether your subscription is active. RevenueCat receives an anonymous identifier created by the app, your purchase receipts and basic device information, under its own privacy policy. When the app asks our server for a personalized reply, it includes that anonymous identifier so our server can check with RevenueCat that your subscription is active. We receive your subscription status, never your name, email or payment details."
         ]
       },
       {
@@ -88,7 +88,7 @@
       {
         "heading": "Contact",
         "paragraphs": [
-          "Questions about privacy: contact@sconimholdings.com. Sconim Holdings LLC. This policy is effective as of September 29, 2026."
+          "Questions about privacy: contact@sconimholdings.com. Sconim Holdings LLC. This policy is effective as of September 30, 2026."
         ]
       }
     ]
@@ -196,7 +196,7 @@
       {
         "heading": "Contact",
         "paragraphs": [
-          "Questions about these Terms: contact@sconimholdings.com. Sconim Holdings LLC. These Terms are effective as of September 29, 2026."
+          "Questions about these Terms: contact@sconimholdings.com. Sconim Holdings LLC. These Terms are effective as of September 30, 2026."
         ]
       }
     ]
