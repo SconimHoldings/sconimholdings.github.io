@@ -259,6 +259,10 @@ const pages = {
 <h3>How do I erase everything?</h3>
 <p>In Embody, go to You, then Account &amp; privacy, then Erase data on this device. It’s permanent. Your subscription is separate, so cancel it in your store settings if you no longer want it.</p>
 
+<h3 id="delete-data">How do I ask for my data to be deleted?</h3>
+<p>Almost everything you create in Embody is stored on your phone, and you can delete it yourself at any time: in Embody, go to You, then Account &amp; privacy, then Erase data on this device. Uninstalling the app also removes it from your phone.</p>
+<p>We hold very little anywhere else: an anonymous record of your subscription, kept by our subscription provider (RevenueCat), and short-lived server logs. To have that subscription record deleted, email <a href="mailto:${EMAIL}?subject=Delete%20my%20data">${EMAIL}</a> with the subject “Delete my data” and the order number from your Google Play or App Store receipt, so we can find the right record. We’ll delete it within 30 days and confirm by email. Apple and Google keep their own purchase records under their own privacy policies.</p>
+
 <h3>How does the Assumption Coach use AI?</h3>
 <p>The Coach asks your permission once before its first conversation. Its replies are written by AI from Anthropic, our service provider, and we don’t store what you send. If it can’t connect, it still works on your phone with a simpler guided version.</p>
 
