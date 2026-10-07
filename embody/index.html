@@ -21,7 +21,10 @@
 <a class="skip" href="#main">Skip to content</a>
 <header class="top"><div class="wrap">
   <a class="brand" href="/">Sconim Holdings</a>
-  <nav aria-label="Main"><a href="/embody/">Embody</a><a class="wide" href="/#about">About</a><a href="/#contact">Contact</a></nav>
+  <nav aria-label="Main"><details class="menu">
+    <summary>Apps</summary>
+    <div class="menu-list"><a href="/embody/"><img src="/assets/embody-icon.png" alt="" width="34" height="34"><span><strong>Embody</strong><small>Law of Assumption</small></span></a><span class="soon"><img src="/assets/twobloom-icon.png" alt="" width="34" height="34"><span><strong>TwoBloom</strong><small>Dating app, coming next</small></span></span><a href="https://pathfinderbid.com" rel="noopener"><img src="/assets/pathfinderbid-icon.png" alt="" width="34" height="34"><span><strong>PathfinderBid</strong><small>Government contract matching</small></span></a></div>
+  </details><a class="wide" href="/#about">About</a><a href="/#contact">Contact</a></nav>
 </div></header>
 <div class="sky"><div class="wrap"><div class="hero">
   <div class="product">
@@ -38,11 +41,17 @@
 
 <section aria-labelledby="look-title">
   <h2 id="look-title">A look inside</h2>
-  <div class="gallery">
-    <figure><div class="phone"><img src="/assets/embody-today.jpg" alt="Today: the Manifest card and a Reality called My Dream Home" width="469" height="1015" loading="lazy"></div><figcaption><strong>Today</strong>Manifest, and the lives you’re choosing</figcaption></figure>
-    <figure><div class="phone"><img src="/assets/embody-practice.jpg" alt="Practice: What do you need right now? with answers like It’s bedtime and Doubt crept in" width="469" height="1015" loading="lazy"></div><figcaption><strong>Practice</strong>Tap what you need right now</figcaption></figure>
-    <figure><div class="phone"><img src="/assets/embody-learn.jpg" alt="Learn: how manifesting unfolds, from deciding to assuming it" width="469" height="1015" loading="lazy"></div><figcaption><strong>Learn</strong>How manifesting unfolds</figcaption></figure>
+  <div class="gallery" tabindex="0" role="group" aria-label="Eight screenshots of Embody. Scroll sideways to see them all.">
+    <figure><img class="shot" src="/assets/embody-01-today.jpg" alt="Your chosen life, in one place. The Today screen, with the Manifest card and a Reality called The House in the Pines." width="640" height="1391" loading="lazy"></figure>
+    <figure><img class="shot" src="/assets/embody-02-reality.jpg" alt="Make it feel real. A vision board with a house, a sunroom and friends over for dinner." width="640" height="1391" loading="lazy"></figure>
+    <figure><img class="shot" src="/assets/embody-03-manifest.jpg" alt="Feel it done in a few minutes. The Manifest flow, holding the feeling." width="640" height="1391" loading="lazy"></figure>
+    <figure><img class="shot" src="/assets/embody-04-practice.jpg" alt="A practice for right now. Tap what fits, like It’s bedtime or Doubt crept in." width="640" height="1391" loading="lazy"></figure>
+    <figure><img class="shot" src="/assets/embody-05-sats.jpg" alt="Fall asleep in the end. SATS at bedtime: one short scene, run three times." width="640" height="1391" loading="lazy"></figure>
+    <figure><img class="shot" src="/assets/embody-06-affirm.jpg" alt="Assume it’s already true. Your assumptions, your journal and questions from the end." width="640" height="1391" loading="lazy"></figure>
+    <figure><img class="shot" src="/assets/embody-07-coach.jpg" alt="Turn a worry into an assumption. One calm exchange with the Assumption Coach." width="640" height="1391" loading="lazy"></figure>
+    <figure><img class="shot" src="/assets/embody-08-learn.jpg" alt="Learn it in plain words. How manifesting unfolds, in stages." width="640" height="1391" loading="lazy"></figure>
   </div>
+  <p class="muted hint">Scroll sideways to see all eight.</p>
 </section>
 
 <section>
@@ -73,7 +82,18 @@
 </main>
 <footer><div class="wrap">
   <span>&copy; 2026 Sconim Holdings LLC &middot; Ohio, United States</span>
-  <nav aria-label="Footer"><a href="/embody/privacy/">Embody Privacy Policy</a><a href="/embody/terms/">Embody Terms</a><a href="/embody/support/">Support</a><a href="/privacy/">Website privacy</a></nav>
+  <nav aria-label="Footer"><a href="/embody/">Embody</a><a href="/#contact">Contact</a><a href="/privacy/">Website privacy</a></nav>
 </div></footer>
+<script>
+// The Apps menu closes when you click away from it or press Escape. It opens and closes without this too.
+(function () {
+  var menu = document.querySelector('.menu');
+  if (!menu) return;
+  document.addEventListener('click', function (e) { if (menu.open && !menu.contains(e.target)) menu.open = false; });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && menu.open) { menu.open = false; menu.querySelector('summary').focus(); }
+  });
+})();
+</script>
 </body>
 </html>

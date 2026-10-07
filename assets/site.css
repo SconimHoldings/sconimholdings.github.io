@@ -45,6 +45,23 @@ a:hover { text-decoration-thickness: 2px; }
 .top nav a:hover { color: var(--ink); }
 @media (max-width: 420px) { .top nav { gap: 14px; } .top nav .wide { display: none; } }
 
+/* The Apps menu in the top bar: every product, opened with a click. */
+.top nav { align-items: center; }
+.menu { position: relative; }
+.menu summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 6px; color: var(--ink-soft); font-weight: 500; font-size: 15px; }
+.menu summary::-webkit-details-marker { display: none; }
+.menu summary::after { content: ""; width: 6px; height: 6px; margin-top: -3px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg); }
+.menu summary:hover, .menu[open] summary { color: var(--ink); }
+.menu[open] summary::after { transform: rotate(-135deg); margin-top: 3px; }
+.menu-list { position: absolute; top: calc(100% + 16px); right: -12px; width: max-content; max-width: calc(100vw - 32px); display: grid; gap: 2px; padding: 8px; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 18px 40px rgba(12, 27, 46, 0.16); z-index: 6; }
+.top nav .menu-list a, .menu-list .soon { display: flex; align-items: center; gap: 12px; padding: 9px 14px 9px 10px; border-radius: 12px; color: var(--ink); text-decoration: none; }
+.top nav .menu-list a:hover { background: var(--surface-alt); }
+.menu-list img { width: 34px; height: 34px; border-radius: 23%; flex: none; }
+.menu-list strong { display: block; font-size: 15px; font-weight: 600; line-height: 1.25; }
+.menu-list small { display: block; font-size: 13px; font-weight: 400; color: var(--muted); line-height: 1.3; }
+.menu-list .soon { cursor: default; }
+.menu-list .soon strong { color: var(--ink-soft); }
+
 footer { margin-top: 72px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
 footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; padding-top: 28px; padding-bottom: 40px; }
 footer nav { display: flex; flex-wrap: wrap; gap: 8px 18px; }
@@ -63,6 +80,8 @@ p { margin: 0; }
 
 /* Sections */
 section { margin-top: 64px; }
+/* Links to a section stop below the sticky header, not under it. */
+section[id], [id] > .band { scroll-margin-top: 88px; }
 .hero { margin-top: 0; padding: 72px 0 8px; }
 .hero .stack > * + * { margin-top: 18px; }
 .sky {
@@ -118,12 +137,6 @@ section { margin-top: 64px; }
 .lineup > :nth-child(3) { transform: rotate(6deg) translateY(10px); }
 @media (max-width: 420px) { .lineup > * { width: 84px; height: 84px; } .lineup > :nth-child(2) { width: 100px; height: 100px; } }
 
-/* Placeholder art for apps that are still in development */
-.tile { display: grid; place-items: center; }
-.tile svg { width: 46%; height: 46%; opacity: 0.9; }
-.tile.dawn { background: linear-gradient(145deg, #ffd9b8 0%, #f4a08c 52%, #9a6aa6 100%); }
-.tile.tide { background: linear-gradient(145deg, #cfe6fb 0%, #86ade9 52%, #3f539f 100%); }
-
 /* ---- Product cards: the whole card is one link; the small links inside stay clickable ---- */
 .products { display: grid; gap: 16px; margin-top: 24px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
 .product-card { position: relative; display: flex; flex-direction: column; gap: 12px; transition: transform 0.15s ease, box-shadow 0.15s ease; }
@@ -140,8 +153,9 @@ section { margin-top: 64px; }
 /* ---- Spotlight: a phone with a real screenshot next to the story ---- */
 .spotlight { display: grid; gap: 36px; align-items: center; }
 @media (min-width: 820px) { .spotlight { grid-template-columns: 300px 1fr; } }
-.phone { width: 100%; max-width: 280px; margin: 0 auto; border: 9px solid #0c1b2e; border-radius: 38px; overflow: hidden; background: #0c1b2e; box-shadow: 0 24px 48px rgba(12, 27, 46, 0.22); }
-.phone img { width: 100%; height: auto; }
+/* Store screenshots: the caption and the phone are part of each picture, so it only needs soft corners. */
+.shot { width: 100%; height: auto; border-radius: 22px; border: 1px solid var(--line); box-shadow: 0 18px 40px rgba(12, 27, 46, 0.14); }
+.shot-frame { width: 100%; max-width: 300px; margin: 0 auto; }
 .checks { list-style: none; padding: 0; margin: 20px 0 0; }
 .checks li { position: relative; padding-left: 34px; color: var(--ink-soft); }
 .checks li + li { margin-top: 12px; }
@@ -154,9 +168,29 @@ section { margin-top: 64px; }
 .band .lead { margin: 12px auto 0; }
 .band .actions { justify-content: center; }
 
-/* ---- Embody page: screenshot gallery (swipes sideways on phones) ---- */
-.gallery { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(220px, 1fr); gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 8px 4px 20px; margin-top: 24px; }
-.gallery figure { margin: 0; scroll-snap-align: center; }
-.gallery .phone { max-width: 250px; border-radius: 34px; border-width: 8px; }
-.gallery figcaption { text-align: center; margin-top: 14px; color: var(--ink-soft); font-size: 15px; }
-.gallery figcaption strong { display: block; color: var(--ink); }
+/* ---- Contact form (sent through Netlify Forms: see README.md). Folded behind a button until it's asked for. ---- */
+.write { margin-top: 24px; }
+.write summary { list-style: none; cursor: pointer; display: inline-block; }
+.write summary::-webkit-details-marker { display: none; }
+.write summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; border-radius: 999px; }
+.write .when-closed { background: var(--ink); color: #fff; }
+.write .when-open { display: none; font-size: 14px; font-weight: 600; color: var(--ink-soft); text-decoration: underline; text-underline-offset: 3px; }
+.write[open] .when-closed { display: none; }
+.write[open] .when-open { display: inline; }
+.contact { max-width: 540px; margin: 16px auto 0; text-align: left; display: grid; gap: 14px; }
+.contact .row { display: grid; gap: 14px; }
+@media (min-width: 560px) { .contact .row { grid-template-columns: 1fr 1fr; } }
+.contact label { display: grid; gap: 6px; font-size: 14px; font-weight: 600; color: var(--ink-soft); }
+.contact input, .contact select, .contact textarea { width: 100%; font: 400 16px/1.4 var(--font); color: var(--ink); background: var(--surface); border: 1px solid #cdd8e3; border-radius: 12px; padding: 11px 13px; }
+.contact textarea { resize: vertical; min-height: 132px; }
+.contact input:focus-visible, .contact select:focus-visible, .contact textarea:focus-visible { outline: 3px solid var(--accent); outline-offset: 1px; border-radius: 12px; }
+.contact .trap { position: absolute; left: -9999px; }
+.contact .send { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 4px; font-size: 14px; }
+.contact button { border: 0; cursor: pointer; font: 600 16px/1.4 var(--font); background: var(--ink); color: #fff; }
+
+/* ---- Embody page: screenshot gallery. A sideways row; the next picture peeks in to show there is more. ---- */
+.gallery { display: grid; grid-auto-flow: column; grid-auto-columns: 250px; gap: 18px; overflow-x: auto; scroll-snap-type: x proximity; padding: 8px 4px 22px; margin-top: 24px; scrollbar-color: #b9c6d4 transparent; }
+.gallery figure { margin: 0; scroll-snap-align: start; }
+.gallery .shot { box-shadow: 0 10px 24px rgba(12, 27, 46, 0.12); }
+.hint { font-size: 14px; margin-top: 4px; }
+@media (max-width: 520px) { .gallery { grid-auto-columns: 72vw; } }

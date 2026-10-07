@@ -1,4 +1,4 @@
-// Builds the Sconim Holdings website into plain HTML files that GitHub Pages serves as they are.
+// Builds the Sconim Holdings website into plain HTML files, served as they are (the site is on Netlify).
 // Run from the repository root: node tools/build.mjs
 // Embody's Privacy Policy and Terms come from data/embody-legal.json, exported from the app
 // (see README.md), so the website and the app always say the same thing.
@@ -12,11 +12,32 @@ const EMAIL = 'contact@sconimholdings.com';
 const YEAR = new Date().getFullYear();
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-// Simple glyphs for the apps still in development (kept vague on purpose).
-const SPARK = '<svg viewBox="0 0 48 48" fill="#fff"><path d="M24 6c1.6 9.4 5.6 13.4 15 15-9.4 1.6-13.4 5.6-15 15-1.6-9.4-5.6-13.4-15-15 9.4-1.6 13.4-5.6 15-15z"/><circle cx="38" cy="36" r="3"/></svg>';
-const ORBIT = '<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="3"><circle cx="24" cy="24" r="14"/><circle cx="24" cy="24" r="4" fill="#fff" stroke="none"/><circle cx="38" cy="14" r="3" fill="#fff" stroke="none"/></svg>';
-const SOON_DAWN = `<div class="tile dawn">${SPARK}</div>`;
-const SOON_TIDE = `<div class="tile tide">${ORBIT}</div>`;
+// The eight iPhone screenshots from Embody's store listing (made by store/tools in the Embody repository,
+// then saved here at 640 pixels wide). Each already has its caption and a phone frame in the picture.
+const SHOTS = [
+  ['01-today', 'Your chosen life, in one place. The Today screen, with the Manifest card and a Reality called The House in the Pines.'],
+  ['02-reality', 'Make it feel real. A vision board with a house, a sunroom and friends over for dinner.'],
+  ['03-manifest', 'Feel it done in a few minutes. The Manifest flow, holding the feeling.'],
+  ['04-practice', 'A practice for right now. Tap what fits, like It’s bedtime or Doubt crept in.'],
+  ['05-sats', 'Fall asleep in the end. SATS at bedtime: one short scene, run three times.'],
+  ['06-affirm', 'Assume it’s already true. Your assumptions, your journal and questions from the end.'],
+  ['07-coach', 'Turn a worry into an assumption. One calm exchange with the Assumption Coach.'],
+  ['08-learn', 'Learn it in plain words. How manifesting unfolds, in stages.'],
+];
+const shot = ([name, alt]) => `<img class="shot" src="/assets/embody-${name}.jpg" alt="${esc(alt)}" width="640" height="1391" loading="lazy">`;
+// Every product, for the "Apps" menu in the top bar. One without a link isn't out yet.
+const APPS = [
+  { name: 'Embody', note: 'Law of Assumption', icon: 'embody-icon.png', href: '/embody/' },
+  { name: 'TwoBloom', note: 'Dating app, coming next', icon: 'twobloom-icon.png' },
+  { name: 'PathfinderBid', note: 'Government contract matching', icon: 'pathfinderbid-icon.png', href: 'https://pathfinderbid.com' },
+];
+const appsMenu = `<details class="menu">
+    <summary>Apps</summary>
+    <div class="menu-list">${APPS.map((a) => {
+      const inner = `<img src="/assets/${a.icon}" alt="" width="34" height="34"><span><strong>${a.name}</strong><small>${a.note}</small></span>`;
+      return a.href ? `<a href="${a.href}"${a.href.startsWith('http') ? ' rel="noopener"' : ''}>${inner}</a>` : `<span class="soon">${inner}</span>`;
+    }).join('')}</div>
+  </details>`;
 const mail = (subject) => `<a href="mailto:${EMAIL}${subject ? `?subject=${encodeURIComponent(subject)}` : ''}">${EMAIL}</a>`;
 
 function layout({ path, title, description, image = '/assets/embody-share.jpg', icon = '/assets/favicon.svg', body, before = '' }) {
@@ -43,15 +64,26 @@ function layout({ path, title, description, image = '/assets/embody-share.jpg', 
 <a class="skip" href="#main">Skip to content</a>
 <header class="top"><div class="wrap">
   <a class="brand" href="/">Sconim Holdings</a>
-  <nav aria-label="Main"><a href="/embody/">Embody</a><a class="wide" href="/#about">About</a><a href="/#contact">Contact</a></nav>
+  <nav aria-label="Main">${appsMenu}<a class="wide" href="/#about">About</a><a href="/#contact">Contact</a></nav>
 </div></header>
 ${before}<main id="main" class="wrap">
 ${body}
 </main>
 <footer><div class="wrap">
   <span>&copy; ${YEAR} Sconim Holdings LLC &middot; Ohio, United States</span>
-  <nav aria-label="Footer"><a href="/embody/privacy/">Embody Privacy Policy</a><a href="/embody/terms/">Embody Terms</a><a href="/embody/support/">Support</a><a href="/privacy/">Website privacy</a></nav>
+  <nav aria-label="Footer"><a href="/embody/">Embody</a><a href="/#contact">Contact</a><a href="/privacy/">Website privacy</a></nav>
 </div></footer>
+<script>
+// The Apps menu closes when you click away from it or press Escape. It opens and closes without this too.
+(function () {
+  var menu = document.querySelector('.menu');
+  if (!menu) return;
+  document.addEventListener('click', function (e) { if (menu.open && !menu.contains(e.target)) menu.open = false; });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && menu.open) { menu.open = false; menu.querySelector('summary').focus(); }
+  });
+})();
+</script>
 </body>
 </html>
 `;
@@ -108,51 +140,50 @@ const pages = {
   'index.html': layout({
     path: '/',
     title: 'Sconim Holdings',
-    description: 'Sconim Holdings develops and publishes modern software and digital products, including Embody, a daily practice app inspired by the Law of Assumption.',
+    description: 'Sconim Holdings develops and publishes modern software and digital products, including Embody, a daily practice app inspired by the Law of Assumption, and PathfinderBid, federal contract matching for small businesses.',
     before: `<div class="sky"><div class="wrap"><div class="hero hero-grid">
   <div>
     <p class="eyebrow">Sconim Holdings LLC</p>
     <h1 style="margin-top:16px">Software made with care.</h1>
-    <p class="lead" style="margin-top:18px">Sconim Holdings develops and publishes modern software and digital products designed to make everyday experiences more useful, intuitive, and engaging. Our portfolio includes Embody, a daily practice app inspired by the Law of Assumption.</p>
-    <div class="actions"><a class="button" href="#apps">See what we make</a><a class="button secondary" href="mailto:${EMAIL}">Get in touch</a></div>
+    <p class="lead" style="margin-top:18px">Sconim Holdings develops and publishes modern software and digital products designed to make everyday experiences more useful, intuitive, and engaging. Our portfolio includes Embody, a daily practice app inspired by the Law of Assumption, and PathfinderBid, federal contract matching for small and mid-sized contractors.</p>
+    <div class="actions"><a class="button" href="#apps">See what we make</a><a class="button secondary" href="#contact" data-write>Get in touch</a></div>
   </div>
   <div class="lineup" aria-hidden="true">
-    ${SOON_DAWN}
+    <img src="/assets/twobloom-icon.png" alt="" width="104" height="104">
     <img src="/assets/embody-icon.png" alt="" width="124" height="124">
-    ${SOON_TIDE}
+    <img src="/assets/pathfinderbid-icon.png" alt="" width="104" height="104">
   </div>
 </div></div></div>
 `,
     body: `<section id="apps">
   <p class="eyebrow">What we make</p>
-  <h2 style="margin-top:10px">Our apps</h2>
+  <h2 style="margin-top:10px">Our products</h2>
   <div class="products">
     <article class="card product-card live">
       <img class="art" src="/assets/embody-icon.png" alt="" width="72" height="72">
       <h3><a class="stretched" href="/embody/">Embody - Law of Assumption</a></h3>
       <p>Choose the life you want, bring it to life with photos and links, and spend a few quiet minutes each day living from the feeling that it’s already yours.</p>
       <p><span class="badge">Coming soon</span></p>
-      <p class="small-links"><a href="/embody/support/">Support</a><a href="/embody/privacy/">Privacy</a><a href="/embody/terms/">Terms</a></p>
     </article>
     <article class="card product-card soon">
-      <div class="art tile dawn" aria-hidden="true">${SPARK}</div>
-      <h3>Something new</h3>
-      <p>A new app we’re working on. We’ll share more soon.</p>
-      <p><span class="badge soft">Coming soon</span></p>
+      <img class="art" src="/assets/twobloom-icon.png" alt="" width="72" height="72">
+      <h3>TwoBloom</h3>
+      <p>Our next app: a dating app, now in development. We’ll share more soon.</p>
+      <p><span class="badge soft">Coming next</span></p>
     </article>
-    <article class="card product-card soon">
-      <div class="art tile tide" aria-hidden="true">${ORBIT}</div>
-      <h3>In the works</h3>
-      <p>Another project in development. More to come.</p>
-      <p><span class="badge soft">Coming soon</span></p>
+    <article class="card product-card live">
+      <img class="art" src="/assets/pathfinderbid-icon.png" alt="" width="72" height="72">
+      <h3><a class="stretched" href="https://pathfinderbid.com" rel="noopener">PathfinderBid</a></h3>
+      <p>Federal contract matching for small and mid-sized contractors. It ranks open government opportunities against your company profile, so you see the ones worth bidding on.</p>
+      <p><span class="badge">Live at pathfinderbid.com</span></p>
     </article>
   </div>
 </section>
 
 <section class="spotlight" aria-labelledby="spotlight-title">
-  <div class="phone"><img src="/assets/embody-today.jpg" alt="The Today screen in Embody: the Manifest card and a Reality called My Dream Home" width="469" height="1015" loading="lazy"></div>
+  <div class="shot-frame">${shot(SHOTS[0])}</div>
   <div>
-    <p class="eyebrow">Now building</p>
+    <p class="eyebrow">Coming soon</p>
     <h2 id="spotlight-title" style="margin-top:10px">Embody - Law of Assumption</h2>
     <p class="lead" style="margin-top:14px">A gentle daily practice for the Law of Assumption: decide what you want, assume it’s already yours, and live from there.</p>
     <ul class="checks">
@@ -180,9 +211,45 @@ const pages = {
   <div class="band">
     <h2>Say hello</h2>
     <p class="lead">Questions, feedback, partnerships or press: we’d love to hear from you.</p>
-    <div class="actions"><a class="button" href="mailto:${EMAIL}">${EMAIL}</a></div>
-    <p class="muted" style="margin-top:16px">Sconim Holdings LLC &middot; Ohio, United States</p>
+    <details class="write" id="write">
+      <summary><span class="button when-closed">Send us a message</span><span class="when-open">Close</span></summary>
+      <form class="contact" name="contact" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="website">
+        <input type="hidden" name="subject" value="Message from sconimholdings.com (%{submissionId})" data-remove-prefix>
+        <p class="trap" aria-hidden="true"><label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
+        <div class="row">
+          <label>Your name<input type="text" name="name" autocomplete="name" maxlength="80"></label>
+          <label>Your email<input type="email" name="email" autocomplete="email" maxlength="120" required></label>
+        </div>
+        <label>What’s it about?
+          <select name="topic">
+            <option>General question</option>
+            <option>Embody</option>
+            <option>PathfinderBid</option>
+            <option>TwoBloom</option>
+            <option>Partnership or press</option>
+          </select>
+        </label>
+        <label>Your message<textarea name="message" rows="5" maxlength="4000" required></textarea></label>
+        <div class="send"><button class="button" type="submit">Send message</button></div>
+      </form>
+    </details>
+    <p class="muted" style="margin-top:14px">or email ${mail()}</p>
+    <p class="muted" style="margin-top:18px">Sconim Holdings LLC &middot; Ohio, United States</p>
   </div>
+  <script>
+  // The message box stays folded until it's asked for. Without this script the button still opens it.
+  (function () {
+    var box = document.getElementById('write');
+    if (!box) return;
+    document.querySelectorAll('[data-write]').forEach(function (link) {
+      link.addEventListener('click', function () { box.open = true; });
+    });
+    box.addEventListener('toggle', function () {
+      var first = box.querySelector('input[name="name"]');
+      if (box.open && first) first.focus({ preventScroll: true });
+    });
+  })();
+  </script>
 </section>`,
   }),
 
@@ -199,11 +266,10 @@ const pages = {
 
 <section aria-labelledby="look-title">
   <h2 id="look-title">A look inside</h2>
-  <div class="gallery">
-    <figure><div class="phone"><img src="/assets/embody-today.jpg" alt="Today: the Manifest card and a Reality called My Dream Home" width="469" height="1015" loading="lazy"></div><figcaption><strong>Today</strong>Manifest, and the lives you’re choosing</figcaption></figure>
-    <figure><div class="phone"><img src="/assets/embody-practice.jpg" alt="Practice: What do you need right now? with answers like It’s bedtime and Doubt crept in" width="469" height="1015" loading="lazy"></div><figcaption><strong>Practice</strong>Tap what you need right now</figcaption></figure>
-    <figure><div class="phone"><img src="/assets/embody-learn.jpg" alt="Learn: how manifesting unfolds, from deciding to assuming it" width="469" height="1015" loading="lazy"></div><figcaption><strong>Learn</strong>How manifesting unfolds</figcaption></figure>
+  <div class="gallery" tabindex="0" role="group" aria-label="Eight screenshots of Embody. Scroll sideways to see them all.">
+    ${SHOTS.map((sh) => `<figure>${shot(sh)}</figure>`).join('\n    ')}
   </div>
+  <p class="muted hint">Scroll sideways to see all eight.</p>
 </section>
 
 <section>
@@ -283,10 +349,22 @@ const pages = {
 <section class="hero stack">
 <h1>Website privacy</h1>
 <p class="intro">This page covers this website. For the app, see the <a href="/embody/privacy/">Embody Privacy Policy</a>.</p>
-<p>This website doesn’t use cookies, analytics, advertising or any other trackers, and it has no forms. It is hosted on GitHub Pages, which may keep visitors’ IP addresses in its logs to keep the service secure. If you email us, we use your message only to reply to you.</p>
+<p>This website doesn’t use cookies, analytics, advertising or any other trackers. It is hosted on Netlify, which may keep visitors’ IP addresses in its logs to keep the service secure.</p>
+<p>If you send us a message with the contact form, your name, email address and message go to Netlify, which checks them for spam (using Akismet), keeps them for us and forwards them to our inbox. We use them only to reply to you, and you can ask us to delete them at any time. If you email us instead, we use your message only to reply to you.</p>
 <p>Questions: ${mail()}.</p>
 </section>
 </article>`,
+  }),
+
+  'thanks/index.html': layout({
+    path: '/thanks/',
+    title: 'Message sent - Sconim Holdings',
+    description: 'Thanks for your message.',
+    body: `<section class="hero stack">
+<h1>Message sent</h1>
+<p class="lead">Thanks for writing. We’ll reply by email as soon as we can.</p>
+<div class="actions"><a class="button" href="/">Back to the home page</a></div>
+</section>`,
   }),
 
   '404.html': layout({

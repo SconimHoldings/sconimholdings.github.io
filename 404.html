@@ -21,7 +21,10 @@
 <a class="skip" href="#main">Skip to content</a>
 <header class="top"><div class="wrap">
   <a class="brand" href="/">Sconim Holdings</a>
-  <nav aria-label="Main"><a href="/embody/">Embody</a><a class="wide" href="/#about">About</a><a href="/#contact">Contact</a></nav>
+  <nav aria-label="Main"><details class="menu">
+    <summary>Apps</summary>
+    <div class="menu-list"><a href="/embody/"><img src="/assets/embody-icon.png" alt="" width="34" height="34"><span><strong>Embody</strong><small>Law of Assumption</small></span></a><span class="soon"><img src="/assets/twobloom-icon.png" alt="" width="34" height="34"><span><strong>TwoBloom</strong><small>Dating app, coming next</small></span></span><a href="https://pathfinderbid.com" rel="noopener"><img src="/assets/pathfinderbid-icon.png" alt="" width="34" height="34"><span><strong>PathfinderBid</strong><small>Government contract matching</small></span></a></div>
+  </details><a class="wide" href="/#about">About</a><a href="/#contact">Contact</a></nav>
 </div></header>
 <main id="main" class="wrap">
 <section class="hero stack">
@@ -31,7 +34,18 @@
 </main>
 <footer><div class="wrap">
   <span>&copy; 2026 Sconim Holdings LLC &middot; Ohio, United States</span>
-  <nav aria-label="Footer"><a href="/embody/privacy/">Embody Privacy Policy</a><a href="/embody/terms/">Embody Terms</a><a href="/embody/support/">Support</a><a href="/privacy/">Website privacy</a></nav>
+  <nav aria-label="Footer"><a href="/embody/">Embody</a><a href="/#contact">Contact</a><a href="/privacy/">Website privacy</a></nav>
 </div></footer>
+<script>
+// The Apps menu closes when you click away from it or press Escape. It opens and closes without this too.
+(function () {
+  var menu = document.querySelector('.menu');
+  if (!menu) return;
+  document.addEventListener('click', function (e) { if (menu.open && !menu.contains(e.target)) menu.open = false; });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && menu.open) { menu.open = false; menu.querySelector('summary').focus(); }
+  });
+})();
+</script>
 </body>
 </html>

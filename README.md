@@ -1,15 +1,18 @@
 # sconimholdings.com
 
-The website for Sconim Holdings LLC and its apps, served by GitHub Pages from this repository's `main` branch.
+The website for Sconim Holdings LLC and its products. It is hosted on Netlify (project `sconimholdings.netlify.app`).
 
 | Page | File |
 | --- | --- |
-| Home: the company, its apps, contact | `index.html` |
+| Home: the company, its products, the contact form | `index.html` |
 | Embody overview | `embody/index.html` |
 | Embody support (the App Store's Support URL) | `embody/support/index.html` |
 | Embody Privacy Policy (the stores' Privacy Policy URL) | `embody/privacy/index.html` |
 | Embody Terms of Service | `embody/terms/index.html` |
 | Website privacy | `privacy/index.html` |
+| "Message sent", shown after the contact form | `thanks/index.html` |
+
+The store listings point straight at the three Embody pages, so their addresses must not change. The site's footer no longer links to Embody's Privacy Policy and Terms: they are reached from the Embody pages.
 
 ## Editing
 
@@ -21,6 +24,23 @@ node tools/build.mjs
 
 Commit the script and the generated `.html` files together. No other tools are needed.
 
+## Publishing
+
+Netlify is not connected to this repository. To publish, zip the public files (the `.html` pages, `assets/`, `robots.txt` and `sitemap.xml`, not `tools/`, `data/` or this file) and drop the zip on the project's **Deploys** page in Netlify.
+
+## The contact form
+
+The form on the home page is sent through Netlify Forms: Netlify finds the `<form data-netlify="true">` when a deploy is uploaded, stores each message, and emails it on.
+
+- **Form detection** must be switched on in Netlify (Forms, then Enable form detection) before the deploy that contains the form.
+- **Email notifications** are set under Forms, then Submission notifications. The `email` field becomes the reply-to address, and the hidden `subject` field sets the subject line.
+- The hidden `website` field is a trap for spam robots (`netlify-honeypot`); people never see it. Netlify also filters spam with Akismet.
+- After sending, people land on `/thanks/`.
+- The form is folded inside a `<details>` and opens when "Send us a message" is pressed (the owner asked for it to stay folded until then). A few lines of script on the home page also open it from the "Get in touch" button at the top and put the cursor in the first box; the page works without the script.
+- The form can't be tried from a local preview. Send a test message from the live site after each change to it.
+
+If the form's fields change, update the website privacy page (`privacy/index.html`, in `tools/build.mjs`) to match.
+
 ## Embody's Privacy Policy and Terms
 
 These come from the app itself (`src/content/legal.ts` and `LEGAL` in `src/lib/config.ts` in the private Embody repository), so the website and the app always match. After changing them in the app, export and rebuild:
@@ -30,14 +50,18 @@ cd ../Embody/server && npx tsx ../scripts/export-legal.ts ../../sconimholdings.g
 cd ../../sconimholdings.github.io && node tools/build.mjs
 ```
 
+## Embody's screenshots
+
+`assets/embody-01-today.jpg` to `embody-08-learn.jpg` are the iPhone screenshots from Embody's store listing (`store/screenshots/app-store-iphone/` in the Embody repository), saved at 640 pixels wide. Each has its caption and a phone frame in the picture, so the pages show them as they are. After the store screenshots are remade, copy them here again at the same size.
+
 ## Domain
 
-`CNAME` tells GitHub Pages to serve the site at sconimholdings.com. DNS is at Northwest: four `A` records for `@` pointing to GitHub Pages (185.199.108.153 to 185.199.111.153) and a `www` CNAME to `sconimholdings.github.io`. The mail records (MX, SPF, DKIM, DMARC, `psrp`) belong to the contact@sconimholdings.com mailbox; leave them alone.
+DNS is at Northwest: an `A` record for `@` pointing to Netlify (75.2.60.5), a `www` CNAME to `sconimholdings.netlify.app`, and an `A` record for `mail` (the webmail). The mail records (MX, SPF, DKIM, DMARC, `psrp`) belong to the contact@sconimholdings.com mailbox; leave them alone. Netlify renews the HTTPS certificate by itself.
 
-## Adding another app
+## Adding another product
 
-Copy the Embody pages in `tools/build.mjs` (overview, support, privacy, terms), add a card to the home page's "Our apps" section, and add the new pages to the sitemap list at the bottom.
+Add it to the `APPS` list at the top of `tools/build.mjs` (that fills the "Apps" menu in the top bar of every page), add a card to the home page's "Our products" section, and put its icon in `assets/`. A product with its own website (like PathfinderBid) only needs the card, linking out. An app that needs pages here: copy the Embody pages (overview, support, privacy, terms) and add them to the sitemap list at the bottom of the script.
 
 ## Credits
 
-The house photo in the Embody screenshot (`assets/embody-today.jpg`) is by Brian Babb on Unsplash (https://unsplash.com/photos/modern-house-with-garage-at-dusk-XbwHrt87mQ0), used under the Unsplash License.
+The photos in the Embody screenshots are from Unsplash, used under the Unsplash License; the full list is in `store/screenshots/README.md` in the Embody repository. The PathfinderBid and TwoBloom icons come from those projects.
