@@ -8,6 +8,13 @@ import { fileURLToPath } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://sconimholdings.com';
+// Embody's store pages (live on Google Play since October 8, 2026 and on the App Store since October 19, 2026).
+const STORES = {
+  appStore: 'https://apps.apple.com/app/id6819844049',
+  googlePlay: 'https://play.google.com/store/apps/details?id=embody.lawofassumption',
+};
+const storeButtons = (extra = '') =>
+  `<div class="actions"><a class="button" href="${STORES.appStore}" rel="noopener">Get it on the App Store</a><a class="button" href="${STORES.googlePlay}" rel="noopener">Get it on Google Play</a>${extra}</div>`;
 const EMAIL = 'contact@sconimholdings.com';
 const YEAR = new Date().getFullYear();
 
@@ -40,7 +47,7 @@ const appsMenu = `<details class="menu">
   </details>`;
 const mail = (subject) => `<a href="mailto:${EMAIL}${subject ? `?subject=${encodeURIComponent(subject)}` : ''}">${EMAIL}</a>`;
 
-function layout({ path, title, description, image = '/assets/embody-share.jpg', icon = '/assets/favicon.svg', body, before = '' }) {
+function layout({ path, title, description, image = '/assets/embody-share.jpg', icon = '/assets/favicon.svg', body, before = '', appBanner = false }) {
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -56,7 +63,7 @@ function layout({ path, title, description, image = '/assets/embody-share.jpg', 
 <meta property="og:url" content="${SITE}${path}">
 <meta property="og:image" content="${SITE}${image}">
 <meta name="theme-color" content="#f3f6f9">
-<link rel="icon" href="${icon}">
+${appBanner ? '<meta name="apple-itunes-app" content="app-id=6819844049">\n' : ''}<link rel="icon" href="${icon}">
 <link rel="apple-touch-icon" href="/assets/embody-icon.png">
 <link rel="stylesheet" href="/assets/site.css">
 </head>
@@ -163,7 +170,7 @@ const pages = {
       <img class="art" src="/assets/embody-icon.png" alt="" width="72" height="72">
       <h3><a class="stretched" href="/embody/">Embody - Law of Assumption</a></h3>
       <p>Choose the life you want, bring it to life with photos and links, and spend a few quiet minutes each day living from the feeling that it’s already yours.</p>
-      <p><span class="badge">Coming soon</span></p>
+      <p><span class="badge">On the App Store and Google Play</span></p>
     </article>
     <article class="card product-card soon">
       <img class="art" src="/assets/twobloom-icon.png" alt="" width="72" height="72">
@@ -183,7 +190,7 @@ const pages = {
 <section class="spotlight" aria-labelledby="spotlight-title">
   <div class="shot-frame">${shot(SHOTS[0])}</div>
   <div>
-    <p class="eyebrow">Coming soon</p>
+    <p class="eyebrow">Available now</p>
     <h2 id="spotlight-title" style="margin-top:10px">Embody - Law of Assumption</h2>
     <p class="lead" style="margin-top:14px">A gentle daily practice for the Law of Assumption: decide what you want, assume it’s already yours, and live from there.</p>
     <ul class="checks">
@@ -192,7 +199,7 @@ const pages = {
       <li><strong>Learn.</strong> How manifesting unfolds, in plain words, with a short course.</li>
       <li><strong>Private by design.</strong> No accounts, no ads and no tracking. What you create stays on your phone.</li>
     </ul>
-    <div class="actions"><a class="button" href="/embody/">Explore Embody</a><a class="button secondary" href="/embody/support/">Support</a></div>
+    ${storeButtons('<a class="button secondary" href="/embody/">Explore Embody</a>')}
   </div>
 </section>
 
@@ -256,12 +263,13 @@ const pages = {
   'embody/index.html': layout({
     path: '/embody/',
     title: 'Embody - Law of Assumption',
-    description: 'Embody is a gentle daily practice for the Law of Assumption: choose the life you want, and practice living from it. Coming soon to the App Store and Google Play.',
+    description: 'Embody is a gentle daily practice for the Law of Assumption: choose the life you want, and practice living from it. Available on the App Store and Google Play.',
     icon: '/assets/embody-icon.png',
+    appBanner: true,
     before: embodyHeader('/embody/'),
     body: `<section class="stack">
   <p class="lead">Your chosen life, manifested. Choose what you want, bring it to life with photos and links, then spend a few quiet minutes each day feeling it’s already yours.</p>
-  <p><span class="badge">Coming soon to the App Store and Google Play</span></p>
+  ${storeButtons()}
 </section>
 
 <section aria-labelledby="look-title">

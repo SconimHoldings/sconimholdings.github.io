@@ -65,3 +65,5 @@ Add it to the `APPS` list at the top of `tools/build.mjs` (that fills the "Apps"
 ## Credits
 
 The photos in the Embody screenshots are from Unsplash, used under the Unsplash License; the full list is in `store/screenshots/README.md` in the Embody repository. The PathfinderBid and TwoBloom icons come from those projects.
+
+Embody's store links live in `STORES` at the top of `tools/build.mjs` (App Store app number 6819844049, Google Play package `embody.lawofassumption`). The Embody page also carries Apple's Smart App Banner tag (`appBanner: true`), so Safari on an iPhone offers to open Embody in the App Store.
